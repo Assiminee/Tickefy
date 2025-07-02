@@ -1,0 +1,71 @@
+services:
+  spring-app:
+    build:
+      context: ./spring
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/pjt_tickefy_backend_main?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - mysql
+
+  python-app:
+    image: assiminee/pjt_new
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    command: uvicorn src.api.root:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./react
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - spring-app
+      - python-app
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pjt_tickefy_backend_main
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+    networks:
+      - default
+
+volumes:
+  mysql-data:
