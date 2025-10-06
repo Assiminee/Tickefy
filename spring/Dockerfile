@@ -10,7 +10,7 @@ WORKDIR /opt/app
 COPY wait-for-mysql.sh .
 RUN chmod +x /opt/app/wait-for-mysql.sh
 
-RUN git clone https://github.com/dermokill/Tickefy.git && \
+RUN git clone https://github.com/Assiminee/Tickefy-Spring-React.git && \
     cp -R Tickefy/Tickefy/. . &&  \
     rm -rf ./Tickefy
 
