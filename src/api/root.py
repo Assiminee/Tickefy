@@ -11,10 +11,6 @@ create_directories()
 app = FastAPI()
 router = APIRouter(prefix="/api/v1")
 
-@router.get("/")
-def root():
-    return {"message": "Hello assiminee!"}
-
 @router.post('/users/{user_id}/assess_image_quality')
 async def assess_image_quality(user_id, image : UploadFile):
     temp_file_path = None
@@ -87,10 +83,13 @@ async def identify(image : UploadFile):
 
             signal = "1"
 
-        send_signal(signal)
+        # Responsible for opening the gates at the stadium entry-point
+        # Omitted as it requires a functioning gate with servo motors,
+        # an Arduino board, and a server which handles this section of
+        # the eco-system
+        # send_signal(signal)
         return {"identified" : similarity > 0.8, "message" : label}
 
-        # raise Exception("Unable to identify the face")
     except Exception as e:
         printErr(e)
         if temp_file_path.exists():
@@ -99,29 +98,6 @@ async def identify(image : UploadFile):
         return JSONResponse(
             status_code=400, content={"identified" : False, "message": str(e)}
         )
-
-# @router.post('/compare')
-# def compare():
-#     values = []
-#     images_path = 'images'
-#     for i in range(5):
-#         for user_dir in os.listdir(images_path):
-#             user_dir_path = os.path.join(images_path, user_dir)
-#             print()
-#             print("Trying to identify images of {} ".format(user_dir))
-#             d = {user_dir: []}
-#             for image in os.listdir(user_dir_path):
-#                 image_path = os.path.join(user_dir_path, image)
-#
-#                 valid_face = is_valid_face(image_path)
-#
-#                 if valid_face:
-#                     similarity, label = compare_faces(image_path)
-#                     d[user_dir].append((similarity, label))
-#                     print("Image similarity is: {}".format(similarity))
-#
-#             values.append(d)
-#
 #     return {"message": "Face comparison complete", "values": values}
 
 app.include_router(router)
