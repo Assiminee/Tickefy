@@ -229,5 +229,5 @@ This project was made possible thanks to the efforts of our talented team:
   - Mohammed Amin Esfouna ([GitHub](https://github.com/ESFOUNA))  
   - Mohammed Lahkim ([GitHub](https://github.com/mohammedlahkim))
 - **AI, Android & Docker Developer, Project Manager:** Myself, Yasmine Znatni ([GitHub](https://github.com/Assiminee))
-- **Embedded Systems Developer:
+- **Embedded Systems Developer:**
   - Oussama El Idrissi
