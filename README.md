@@ -100,8 +100,32 @@ The Android device thus remains lightweight and fast, while the heavy facial rec
 - `mysql` — Database
 - `phpmyadmin` — Optional DB management UI
 
-### ▶️ Quick Start
+## 🧪 Full System Test — End-to-End Demonstration
+
+This section explains how anyone can **run the complete Tickefy ecosystem** — including the web platform, AI microservice, and Android application — to experience the full ticketing and access-control workflow.
+
+---
+
+### ⚙️ 1. Run the Platform (Dockerized Stack)
+
+#### Clone the main repository
 ```bash
 git clone https://github.com/<yourusername>/Tickefy-Docker.git
 cd Tickefy-Docker
+```
+
+#### Build and start the system
+Given the fact that the AI microservice container is considerably large, this might take a considerable amount of time.
+Keep in mind that this system uses CUDA, which means that a NVIDIA GPU is required.
+```bash
 docker compose up --build
+```
+
+Once the containers are up, the services will be available at:
+
+|Service|URL|
+|-------|---|
+|🖥️ Frontend (React)|http://localhost:5173|
+|⚙️ Spring Boot Backend|http://localhost:5001|
+|🤖 FastAPI (AI Module)|http://localhost:8000/docs|
+|🗄️ PhpMyAdmin (optional)|http://localhost:8080|
