@@ -21,7 +21,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
 WORKDIR /app
 
 RUN git clone --single-branch --branch FrontendBranch \
-    https://github.com/dermokill/Tickefy.git .
+    https://github.com/Assiminee/Tickefy-Spring-React.git .
 
 # Install the Node.js dependencies
 RUN npm install --legacy-peer-deps
