@@ -110,8 +110,8 @@ This section explains how anyone can **run the complete Tickefy ecosystem** — 
 
 #### Clone the main repository
 ```bash
-git clone https://github.com/<yourusername>/Tickefy-Docker.git
-cd Tickefy-Docker
+git clone https://github.com/Assiminee/Tickefy.git
+cd Tickefy
 ```
 
 #### Build and start the system
@@ -119,7 +119,7 @@ cd Tickefy-Docker
 > The AI microservice container (FastAPI with CUDA support) is quite large and may take some time to build, especially on first run.  
 > This system relies on **CUDA**, so an **NVIDIA GPU** and the **NVIDIA Container Toolkit** are required to enable hardware acceleration.
 ```bash
-docker compose up --build
+docker compose up
 ```
 
 Once the containers are up, the services will be available at:
@@ -147,7 +147,7 @@ Run it on your Android device or tablet:
 
 4. Developer Options → Enable USB debugging.
 
-5. Connect your device via USB.
+5. Connect your device via WIFI.
 
 6. Click Run ▶ in Android Studio.
 
@@ -157,7 +157,7 @@ Run it on your Android device or tablet:
 
 Once the app is running, make sure it’s configured to connect to your backend:
 ```
-http://<your-computer-IP>:8000
+http://<your-computer-IP>:5001
 ```
 
 ### 3. Follow the Full User Flow
