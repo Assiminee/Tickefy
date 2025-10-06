@@ -36,4 +36,72 @@ All services are fully containerized with **Docker Compose**, making deployment 
 <img width="1190" height="520" alt="architecture" src="https://github.com/user-attachments/assets/3df8a134-156c-4a24-afa0-298366d2ef8e" />
 
 
+- **Frontend (React):** Provides user interaction (browsing matches, purchasing, and uploading face images).  
+- **Backend (Spring Boot):** Manages users, tickets, matches, and communication between services.  
+- **AI Microservice (FastAPI):** Performs face detection, embedding, and verification.  
+- **IoT Layer:** Raspberry Pi and Arduino handle real-time gate automation.  
+- **Android App:** Used by stadium staff for biometric verification at entry points.
 
+---
+
+## 📱 Android App — *Tickefy Entry Capture Interface*
+
+The **Android application** is the **user-facing interface deployed at event entry points**.  
+It allows spectators to **capture their facial images** upon arrival, which are then sent to the backend for identity verification.
+
+### 🔗 Repository
+➡️ [Tickefy Android (Assiminee/TickefyAndroid)](https://github.com/Assiminee/TickefyAndroid)
+
+### 📘 Description
+The application was developed by **customizing an open-source Android camera UI project** (**[placeholder for original repository link]**) to fit Tickefy’s workflow.  
+The base project originally handled only image capture, with no recognition or backend integration.  
+
+Within **Tickefy**, the app’s purpose was extended to:
+- Serve as the **official entry-point terminal UI** (used by staff or kiosks at stadium gates)  
+- Capture high-quality images of spectators for **authentication through the FastAPI microservice**  
+- Send these images to the backend over HTTP for **real-time identity validation**  
+- Contribute additional samples (under user consent) to the **biometric dataset**, improving the model’s robustness across:
+  - different lighting conditions  
+  - camera angles  
+  - facial expressions  
+
+### 🧠 AI Integration
+Captured images are sent to the FastAPI endpoint:
+
+# POST /api/v1/face/validate
+This endpoint handles:
+- Preprocessing (face alignment, quality verification)
+- Embedding extraction and comparison
+- Return of an *accept/reject* signal (and optional contribution to the dataset)
+
+The Android device thus remains lightweight and fast, while the heavy facial recognition computations are offloaded to GPU-backed containers.
+
+---
+
+## 🧰 Tech Stack Summary
+
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | React.js, Node.js |
+| **Backend** | Spring Boot (Java 21), Eureka, MySQL |
+| **AI Module** | FastAPI, TensorFlow, PyTorch, FAISS, OpenCV |
+| **Mobile App** | Android (Java, CameraX, Retrofit) |
+| **Orchestration** | Docker & Docker Compose |
+| **Hardware Prototype** | Raspberry Pi 4, Arduino, Servo Motors |
+
+---
+
+## 🐳 Dockerized Setup
+
+### Included Services
+- `spring-app` — Core backend (Java)
+- `python-app` — AI and facial recognition (Python + CUDA)
+- `frontend` — Web client (React)
+- `mysql` — Database
+- `phpmyadmin` — Optional DB management UI
+
+### ▶️ Quick Start
+```bash
+git clone https://github.com/<yourusername>/Tickefy-Docker.git
+cd Tickefy-Docker
+docker compose up --build
