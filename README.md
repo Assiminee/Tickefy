@@ -216,3 +216,7 @@ If you chose to enable facial authentication:
 
 If access is valid and recognition succeeds, the system will mark you as checked-in, and the Raspberry/Arduino module (in a full deployment) triggers gate opening.
 
+## 🎥 Demo video
+
+https://github.com/user-attachments/assets/2c79efd6-a09d-4400-98e2-b783128953a1
+
