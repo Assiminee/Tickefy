@@ -220,3 +220,14 @@ If access is valid and recognition succeeds, the system will mark you as checked
 
 https://github.com/user-attachments/assets/2c79efd6-a09d-4400-98e2-b783128953a1
 
+## 👩🏼‍💻 Contributors
+
+This project was made possible thanks to the efforts of our talented team:
+
+- **Backend Developer:** Saad Boukili ([GitHub](https://github.com/dermokill)) 
+- **Frontend Developers:**  
+  - Mohammed Amin Esfouna ([GitHub](https://github.com/ESFOUNA))  
+  - Mohammed Lahkim ([GitHub](https://github.com/mohammedlahkim))
+- **AI, Android & Docker Developer, Project Manager:** Myself, Yasmine Znatni ([GitHub](https://github.com/Assiminee))
+- **Embedded Systems Developer:
+  - Oussama El Idrissi
