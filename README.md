@@ -33,6 +33,7 @@ All services are fully containerized with **Docker Compose**, making deployment 
 ---
 
 ## 🧱 Architecture
-<img width="654" height="324" alt="image" src="https://github.com/user-attachments/assets/c7cf0dc9-1234-442b-99d1-1d5f9e323a8c" />
+<img width="1190" height="520" alt="architecture" src="https://github.com/user-attachments/assets/3df8a134-156c-4a24-afa0-298366d2ef8e" />
+
 
 
